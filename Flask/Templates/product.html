@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for message in messages %}
+            <div class="success">
+                  <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                  <h3 id = "message" >{{message}}</h3>
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+<main>
+<h2>Product Information</h2>
+    <section id="menu">
+    <select name="operation" id="operation">
+                <option value="best">Pastries</option>
+                <option value="new">Cold Drinks</option>
+                <option value="hot">Hot Drinks</option>
+    </select>
+    <div class="product-row">
+        {% for product in product_list %}
+        <div class="product" >
+            <img class="pic" src="{{url_for('static',filename='images/'~product[0]~'.jpg')}}">
+            <h4>{{product[1]}}</h4>
+            <h5>Php.{{product[3]}}</h5>
+            <button>Add to Cart</button>
+        </div>
+        {% endfor %}
+    </div>
+    </section>
+</main>
+{% endblock %}
+

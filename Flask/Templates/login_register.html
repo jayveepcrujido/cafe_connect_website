@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% block content %}
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert">
+                  <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                  <h3 id = "message" >{{message}}</h3>
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+    <div class="form-container" id="main">
+        <div class="sign-up">
+            <form class="form-form" method="post" action="/login_register">
+                <h1>Create an Account</h1>
+                <div class="social-container">
+                    <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+                    <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+                <p class="texts">or user your email for registration</p>
+                <input class="log-input" type="text" id="rtxt" name="rtxt" placeholder="Name" required>
+                <input class="log-input" type="email" id="remail" name="remail" placeholder="Email" required>
+                <input class="log-input" type="password" id="rpswd" name="rpswd" placeholder="Password" required>
+                <input class="form_btn" type="submit" value="Sign Up">
+            </form>
+        </div>
+        <div class="sign-in">
+            <form class="form-form" method="post" action="/login_user">
+                <h1>Sign In</h1>
+                <div class="social-container">
+                    <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+                    <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+                <p class="texts">or user your account</p>
+                <input class="log-input" type="email" name="semail" placeholder="Email" required>
+                <input class="log-input" type="password" name="spswd" placeholder="Password" required>
+                <a id="forget" href="#">Forget Password?</a>
+                <button class="form_btn" type="submit">Sign In</button>
+            </form>
+        </div>
+        <div class="overlay-container">
+            <div class="overlay">
+                <div class="overlay-left">
+                    <h1>Welcome Back</h1>
+                    <p class="texts" >To keep connected with us,<br> please login with your personal info</p>
+                    <button class="form_btn" id="signIn">Sign In</button>
+                </div>
+                <div class="overlay-right">
+                    <h1>Hello, Friend!</h1>
+                    <p class="texts">Enter your personal info and start your <br>journey with us</p>
+                    <button class="form_btn" id="signUp">Sign Up</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

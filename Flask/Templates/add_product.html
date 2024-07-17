@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block content %}
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for message in messages %}
+            <div class="success">
+                  <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                  <h3 id = "message" >{{message}}</h3>
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+<div class="add-product-row">
+    <div class="add-block">
+        <img src="{{url_for('static', filename = 'images/logo2.jpg')}}" alt="logo">
+        <h1 id="add-label">Add New Product</h1>
+        <form action="/add_product" method="post" enctype="multipart/form-data">
+            <label for="name">Product Name:</label><br>
+            <input class="add-input" type="text" id="name" name="name"><br>
+            <label for="description">Description:</label><br>
+            <input class="add-input" type="text" id="description" name="description"><br>
+            <label for="price">Product Price:</label><br>
+            <input class="add-input" type="number" id="price" name="price"><br>
+            <label for="stock_quantity">Stock Quantity</label><br>
+            <input class="add-input" type="number" id="stock_quantity" name="stock_quantity"><br>
+            <label for="category_id">Product Category: </label><br>
+            <input class="add-input" list="category_id" name="category_id"><br>
+              <datalist id="category_id">
+                  <option label="Cold Drinks" value=1>
+                  <option label="Pastries" value=2>
+                  <option label="Hot Beverages" value=3>
+              </datalist>
+            <label for="file_image">Product Image: </label><br>
+            <input class="add-input" type="file" name="file_image" id="file_image" accept=".jpg" required><br>
+            <input class="add-button" type="submit" value="Add Product">
+        </form>
+    </div>
+</div>
+{% endblock %}
